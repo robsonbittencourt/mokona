@@ -9,7 +9,7 @@ public abstract class Driver {
 
 	public static WebDriver getDriver() {
 		if (driver == null) {
-			System.setProperty("webdriver.chrome.driver", "C:/Renner.Config/" + "chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
 			driver = new ChromeDriver();
 		}
 
