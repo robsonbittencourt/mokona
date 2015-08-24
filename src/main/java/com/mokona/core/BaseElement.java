@@ -7,18 +7,22 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.mokona.drive.Driver;
+import com.mokona.driver.Driver;
 
 public abstract class BaseElement {
 
 	private WebElement element;
 
-	protected WebDriver driver;
+	private WebDriver driver;
 
 	private String selector;
 
 	public BaseElement() {
 		driver = Driver.getDriver();
+	}
+	
+	protected WebDriver getWebDriver() {
+		return driver;
 	}
 
 	protected WebElement getElement() {
@@ -36,7 +40,6 @@ public abstract class BaseElement {
 	}
 
 	private WebElement findElement() {
-
 		try {
 			element = driver.findElement(By.cssSelector(selector));
 			waitForElement(driver, By.cssSelector(selector), 30);

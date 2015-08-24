@@ -4,8 +4,7 @@ import java.lang.reflect.Field;
 
 import org.openqa.selenium.WebDriver;
 
-import com.mokona.drive.Driver;
-import com.mokona.wait.WaitTool;
+import com.mokona.driver.Driver;
 
 public abstract class BasePage {
 	

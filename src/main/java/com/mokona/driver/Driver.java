@@ -1,7 +1,6 @@
-package com.mokona.drive;
+package com.mokona.driver;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public abstract class Driver {
 
@@ -9,8 +8,7 @@ public abstract class Driver {
 
 	public static WebDriver getDriver() {
 		if (driver == null) {
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-			driver = new ChromeDriver();
+			driver = DriverFactory.get();
 		}
 
 		return driver;
