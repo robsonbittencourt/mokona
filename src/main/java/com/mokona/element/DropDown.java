@@ -6,11 +6,11 @@ import com.mokona.core.BaseElement;
 
 public class DropDown extends BaseElement {
 
-	public void select(String item) {
-		getElement().click();
-		getElement().sendKeys(item);
+    public void select(String item) {
+        getElement().click();
+        getElement().sendKeys(item);
 
-		getElement().sendKeys(Keys.ENTER);
-	}
+        getElement().sendKeys(Keys.ENTER);
+    }
 
 }

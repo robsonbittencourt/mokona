@@ -11,43 +11,43 @@ import com.mokona.driver.Driver;
 
 public abstract class BaseElement {
 
-	private WebElement element;
+    private WebElement element;
 
-	private WebDriver driver;
+    private WebDriver driver;
 
-	private String selector;
+    private String selector;
 
-	public BaseElement() {
-		driver = Driver.getDriver();
-	}
-	
-	protected WebDriver getWebDriver() {
-		return driver;
-	}
+    public BaseElement() {
+        driver = Driver.getDriver();
+    }
 
-	protected WebElement getElement() {
-		if (element != null) {
-			return element;
-		}
+    protected WebDriver getWebDriver() {
+        return driver;
+    }
 
-		try {
-			element = findElement();
-		} catch (Exception e) {
-			System.out.println("Could not find the element in the class.");
-		}
+    protected WebElement getElement() {
+        if (element != null) {
+            return element;
+        }
 
-		return element;
-	}
+        try {
+            element = findElement();
+        } catch (Exception e) {
+            System.out.println("Could not find the element in the class.");
+        }
 
-	private WebElement findElement() {
-		try {
-			element = driver.findElement(By.cssSelector(selector));
-			waitForElement(driver, By.cssSelector(selector), 30);
-		} catch (NoSuchElementException e) {
-			System.out.println("Element not found on the page.");
-		}
+        return element;
+    }
 
-		return element;
-	}
+    private WebElement findElement() {
+        try {
+            element = driver.findElement(By.cssSelector(selector));
+            waitForElement(driver, By.cssSelector(selector), 30);
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found on the page.");
+        }
+
+        return element;
+    }
 
 }

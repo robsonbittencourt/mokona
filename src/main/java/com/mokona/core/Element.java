@@ -9,8 +9,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Element {
 
-	String selector();
+    String selector();
 
-	String name() default "";
+    String name() default "";
 
 }
