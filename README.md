@@ -28,7 +28,7 @@ public class GooglePage extends BasePage {
 
 	public void search(String textToSearch) {
 	   searchInput.set(textToSearch);
-	   searchButton.click();
+	   searchButton.click(); 
 	}
 
 }
