@@ -7,8 +7,7 @@ For this create a class that will represent the page of your application and hav
 
 ```java
 public class GooglePage extends BasePage {
-	
-	
+
 }
 ```
 
