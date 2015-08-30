@@ -6,11 +6,11 @@ import org.openqa.selenium.WebDriver;
 
 import com.mokona.driver.Driver;
 
-public abstract class BasePage {
+public abstract class MokonaPage {
 
     protected WebDriver driver;
 
-    public BasePage() {
+    public MokonaPage() {
         try {
             driver = Driver.getDriver();
             initElements();

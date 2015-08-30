@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import com.mokona.driver.Driver;
 
-public abstract class BaseElement {
+public abstract class MokonaElement {
 
     private WebElement element;
 
@@ -17,7 +17,7 @@ public abstract class BaseElement {
 
     private String selector;
 
-    public BaseElement() {
+    public MokonaElement() {
         driver = Driver.getDriver();
     }
 

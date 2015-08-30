@@ -1,8 +1,8 @@
 package com.mokona.element;
 
-import com.mokona.core.BaseElement;
+import com.mokona.core.MokonaElement;
 
-public class Link extends BaseElement {
+public class Link extends MokonaElement {
 
     public String getText() {
         return getElement().getText();

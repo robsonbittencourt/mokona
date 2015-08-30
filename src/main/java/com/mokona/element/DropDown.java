@@ -2,9 +2,9 @@ package com.mokona.element;
 
 import org.openqa.selenium.Keys;
 
-import com.mokona.core.BaseElement;
+import com.mokona.core.MokonaElement;
 
-public class DropDown extends BaseElement {
+public class DropDown extends MokonaElement {
 
     public void select(String item) {
         getElement().click();

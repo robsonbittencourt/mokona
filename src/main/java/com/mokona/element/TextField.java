@@ -1,8 +1,8 @@
 package com.mokona.element;
 
-import com.mokona.core.BaseElement;
+import com.mokona.core.MokonaElement;
 
-public class TextField extends BaseElement {
+public class TextField extends MokonaElement {
 
     public void set(String text) {
         getElement().sendKeys(text);
