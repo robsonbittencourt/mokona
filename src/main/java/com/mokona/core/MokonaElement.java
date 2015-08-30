@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.mokona.driver.Driver;
+import com.mokona.exception.MokonaException;
 
 public abstract class MokonaElement {
 
@@ -30,13 +31,7 @@ public abstract class MokonaElement {
             return element;
         }
 
-        try {
-            element = findElement();
-        } catch (Exception e) {
-            System.out.println("Could not find the element in the class.");
-        }
-
-        return element;
+        return findElement();
     }
 
     private WebElement findElement() {
@@ -44,7 +39,7 @@ public abstract class MokonaElement {
             element = driver.findElement(By.cssSelector(selector));
             waitForElement(driver, By.cssSelector(selector), 30);
         } catch (NoSuchElementException e) {
-            System.out.println("Element not found on the page.");
+            throw new MokonaException("Element not found on the page.");
         }
 
         return element;

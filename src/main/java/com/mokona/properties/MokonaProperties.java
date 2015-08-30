@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import com.mokona.exception.MokonaException;
+
 public final class MokonaProperties {
     
     private static final String MOKONA_PROPERTIES_FILE_NAME = "mokona.properties";
@@ -41,7 +43,7 @@ public final class MokonaProperties {
                 }
                 
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new MokonaException("Mokona configuration file not found");
             }
         }
     }
