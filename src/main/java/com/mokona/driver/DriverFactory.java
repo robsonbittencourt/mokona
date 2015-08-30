@@ -1,37 +1,23 @@
 package com.mokona.driver;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.mokona.core.PropertiesReader;
+import com.mokona.properties.MokonaProperties;
 
 public class DriverFactory {
 
+    private static final String CHROME_DRIVER_SYSTEM_PROPERTY = "webdriver.chrome.driver";
+    
     public static WebDriver driver;
 
     public static WebDriver get() {
-        Map<String, String> properties = PropertiesReader.get();
-        String driverType = null;
-        String driverPath = null;
-
-        for(Entry<String, String> entry : properties.entrySet()) {
-            if(entry.getKey().startsWith("mokona.webdriver")) {
-                driverType = entry.getKey();
-                driverPath = entry.getValue();
-                break;
-            }
-        }
-
-        if (driverType.equals("mokona.webdriver.chrome")) {
-            System.setProperty("webdriver.chrome.driver", driverPath);
+        if (MokonaProperties.getChromeDriverPath() != null) {
+            System.setProperty(CHROME_DRIVER_SYSTEM_PROPERTY, MokonaProperties.getChromeDriverPath());
             driver = new ChromeDriver();
         }
 
         return driver;
-
     }
 
 }

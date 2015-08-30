@@ -49,3 +49,12 @@ public class MyAwesomeRadioButton extends BaseElement {
 
 }
 ```
+
+##Configuration
+To use mokona is necessary to create a configuration file in the root of your project. This file should be called mokona.properties. For now the only configuration required is the location of your WebDriver, and the only supported driver is the ChromeDriver. A sample configuration can be seen below: 
+
+```
+
+mokona.webdriver.chrome=src/main/resources/chromedriver
+
+```
