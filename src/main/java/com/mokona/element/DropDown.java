@@ -7,10 +7,10 @@ import com.mokona.core.MokonaElement;
 public class DropDown extends MokonaElement {
 
     public void select(String item) {
-        getElement().click();
-        getElement().sendKeys(item);
+        getWebElement().click();
+        getWebElement().sendKeys(item);
 
-        getElement().sendKeys(Keys.ENTER);
+        getWebElement().sendKeys(Keys.ENTER);
     }
 
 }

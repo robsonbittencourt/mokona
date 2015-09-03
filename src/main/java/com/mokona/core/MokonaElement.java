@@ -7,28 +7,28 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.mokona.driver.Driver;
+import com.mokona.driver.DriverFactory;
 import com.mokona.exception.MokonaException;
 
 public abstract class MokonaElement {
 
-    private WebElement element;
+    private WebElement webElement;
 
-    private WebDriver driver;
+    private WebDriver webDriver;
 
     private String selector;
 
     public MokonaElement() {
-        driver = Driver.getDriver();
+        webDriver = DriverFactory.get();
     }
 
     protected WebDriver getWebDriver() {
-        return driver;
+        return webDriver;
     }
 
-    protected WebElement getElement() {
-        if (element != null) {
-            return element;
+    protected WebElement getWebElement() {
+        if (webElement != null) {
+            return webElement;
         }
 
         return findElement();
@@ -36,13 +36,13 @@ public abstract class MokonaElement {
 
     private WebElement findElement() {
         try {
-            element = driver.findElement(By.cssSelector(selector));
-            waitForElement(driver, By.cssSelector(selector), 30);
+            webElement = webDriver.findElement(By.cssSelector(selector));
+            waitForElement(webDriver, By.cssSelector(selector), 30);
         } catch (NoSuchElementException e) {
             throw new MokonaException("Element not found on the page.");
         }
 
-        return element;
+        return webElement;
     }
 
 }

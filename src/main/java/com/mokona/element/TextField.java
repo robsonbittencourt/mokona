@@ -5,7 +5,7 @@ import com.mokona.core.MokonaElement;
 public class TextField extends MokonaElement {
 
     public void set(String text) {
-        getElement().sendKeys(text);
+        getWebElement().sendKeys(text);
     }
 
     public void set(int text) {
@@ -17,11 +17,11 @@ public class TextField extends MokonaElement {
     }
 
     public String get() {
-        return getElement().getText();
+        return getWebElement().getText();
     }
 
     public void clear() {
-        getElement().clear();
+        getWebElement().clear();
     }
 
 }

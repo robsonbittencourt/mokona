@@ -7,11 +7,11 @@ import com.mokona.core.MokonaElement;
 public class Button extends MokonaElement {
 
     public void click() {
-        getElement().sendKeys(Keys.ENTER);
+        getWebElement().sendKeys(Keys.ENTER);
     }
 
     public String getText() {
-        return getElement().getText();
+        return getWebElement().getText();
     }
 
 }

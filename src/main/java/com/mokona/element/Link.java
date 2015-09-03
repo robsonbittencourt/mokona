@@ -5,11 +5,11 @@ import com.mokona.core.MokonaElement;
 public class Link extends MokonaElement {
 
     public String getText() {
-        return getElement().getText();
+        return getWebElement().getText();
     }
 
     public void click() {
-        getElement().click();
+        getWebElement().click();
     }
 
 }

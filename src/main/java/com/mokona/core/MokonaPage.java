@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 import org.openqa.selenium.WebDriver;
 
-import com.mokona.driver.Driver;
+import com.mokona.driver.DriverFactory;
 import com.mokona.exception.MokonaException;
 
 public abstract class MokonaPage {
@@ -13,7 +13,7 @@ public abstract class MokonaPage {
 
     public MokonaPage() {
         try {
-            driver = Driver.getDriver();
+            driver = DriverFactory.get();
             initElements();
         } catch (Exception e) {
             throw new MokonaException("Error on instantiate elements of page.");

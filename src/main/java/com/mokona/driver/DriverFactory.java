@@ -10,14 +10,19 @@ public class DriverFactory {
     private static final String CHROME_DRIVER_SYSTEM_PROPERTY = "webdriver.chrome.driver";
     
     public static WebDriver driver;
-
+   
     public static WebDriver get() {
-        if (MokonaProperties.getChromeDriverPath() != null) {
+        if (driver == null && MokonaProperties.getChromeDriverPath() != null) {
             System.setProperty(CHROME_DRIVER_SYSTEM_PROPERTY, MokonaProperties.getChromeDriverPath());
             driver = new ChromeDriver();
         }
 
         return driver;
+    }
+    
+    public void endsDriver() {
+        driver.close();
+        driver.quit();
     }
 
 }
