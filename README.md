@@ -1,6 +1,17 @@
 # Mokona [![Build Status](https://travis-ci.org/robsonbittencourt/mokona.svg?branch=master)](https://travis-ci.org/robsonbittencourt/mokona)
 The goal of Mokona is to create layers of abstraction to facilitate selection of elements in tests using the Selenium WebDriver project 
 
+##Get Mokona
+Add the dependence in your pom.xml file
+
+```
+<dependency>
+    <groupId>com.github.robsonbittencourt</groupId>
+    <artifactId>mokona</artifactId>
+    <version>0.0.1</version>
+</dependency> 
+```
+
 ##Pages
 If you use the [Page Object pattern](http://martinfowler.com/bliki/PageObject.html) in your tests (i hope so) Mokona offers a way to facilitate the creation of these objects.
 For this create a class that will represent the page of your application and have it extend the Mokona class named `MokonaPage`.
