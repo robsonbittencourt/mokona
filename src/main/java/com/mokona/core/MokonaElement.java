@@ -7,21 +7,18 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.mokona.driver.DriverFactory;
+import com.google.inject.Inject;
 import com.mokona.exception.MokonaException;
 
 public abstract class MokonaElement {
+    
+    @Inject
+    private WebDriver webDriver;
 
     private WebElement webElement;
 
-    private WebDriver webDriver;
-
     private String selector;
-
-    public MokonaElement() {
-        webDriver = DriverFactory.get();
-    }
-
+    
     protected WebDriver getWebDriver() {
         return webDriver;
     }

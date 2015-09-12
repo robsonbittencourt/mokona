@@ -12,22 +12,12 @@ public final class MokonaProperties {
     
     private static final String MOKONA_PROPERTIES_FILE_NAME = "mokona.properties";
    
-    private static MokonaProperties instance;
+    private Map<String, String> properties;
     
-    private static Map<String, String> properties;
-    
-    public static String getChromeDriverPath() {
-        getInstance();
+    public String getChromeDriverPath() {
+        readPropertiesFile();
         
         return properties.get("mokona.webdriver.chrome");
-    }
-    
-    private static synchronized MokonaProperties getInstance() {
-        if (instance == null) {
-            instance = new MokonaProperties();
-            instance.readPropertiesFile();
-        }
-        return instance;
     }
     
     private void readPropertiesFile() {
