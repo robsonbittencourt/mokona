@@ -25,7 +25,7 @@ public class GooglePage extends MokonaPage {
 ##Elements 
 Elements should be classes in your project representing the visual elements such as buttons, links, and text fields.
 Mokona already has some basic elements of html, as mentioned above. To use them you must use the annotation `@Element`
-along with a selector that identifies the element on page. Once declared on the page, no need to instantiate them, this is done automatically.
+along with a selector that identifies the element on page. Currently only the css selector is supported. Once declared on the page, no need to instantiate them, this is done automatically.
 
 ```java
 public class GooglePage extends MokonaPage {
