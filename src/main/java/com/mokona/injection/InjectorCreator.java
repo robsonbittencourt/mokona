@@ -5,12 +5,12 @@ import com.google.inject.Injector;
 
 public class InjectorCreator {
 
-	private static Injector INJECTOR = null;
+    private static Injector INJECTOR = null;
 
-	public static Injector getInjector() {
-		if (INJECTOR == null)
-			INJECTOR = Guice.createInjector(new InjectionModule());
-		return INJECTOR;
-	}
+    public static Injector getInjector() {
+        if (INJECTOR == null)
+            INJECTOR = Guice.createInjector(new InjectionModule());
+        return INJECTOR;
+    }
 
 }

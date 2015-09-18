@@ -12,40 +12,40 @@ import com.mokona.wait.WaitTool;
 
 public abstract class MokonaElement {
 
-	@Inject
-	private WebDriver webDriver;
+    @Inject
+    private WebDriver webDriver;
 
-	@Inject
-	private WaitTool waitTool;
+    @Inject
+    private WaitTool waitTool;
 
-	private WebElement webElement;
+    private WebElement webElement;
 
-	private By selector;
+    private By selector;
 
-	protected WebDriver getWebDriver() {
-		return webDriver;
-	}
+    protected WebDriver getWebDriver() {
+        return webDriver;
+    }
 
-	protected WebElement getWebElement() {
-		if (webElement == null) {
-			webElement = findElement();
-		}
+    protected WebElement getWebElement() {
+        if (webElement == null) {
+            webElement = findElement();
+        }
 
-		return webElement;
-	}
+        return webElement;
+    }
 
-	private WebElement findElement() {
-		try {
-			WebElement element = webDriver.findElement(selector);
-			waitTool.waitForElement(selector, 30);
-			return element;
-		} catch (NoSuchElementException e) {
-			throw new MokonaException("Element not found on the page.", e);
-		}
-	}
+    private WebElement findElement() {
+        try {
+            WebElement element = webDriver.findElement(selector);
+            waitTool.waitForElement(selector, 30);
+            return element;
+        } catch (NoSuchElementException e) {
+            throw new MokonaException("Element not found on the page.", e);
+        }
+    }
 
-	public void setSelector(By selector) {
-		this.selector = selector;
-	}
+    public void setSelector(By selector) {
+        this.selector = selector;
+    }
 
 }

@@ -8,13 +8,13 @@ import com.mokona.driver.WebDriverProvider;
 
 public class InjectionModule extends AbstractModule {
 
-	@Override
-	protected void configure() {
-		bind(WebDriver.class).toProvider(WebDriverProvider.class);
+    @Override
+    protected void configure() {
+        bind(WebDriver.class).toProvider(WebDriverProvider.class);
 
-		ElementTypeListener listener = new ElementTypeListener();
-		requestInjection(listener);
-		bindListener(Matchers.any(), listener);
-	}
+        ElementTypeListener listener = new ElementTypeListener();
+        requestInjection(listener);
+        bindListener(Matchers.any(), listener);
+    }
 
 }

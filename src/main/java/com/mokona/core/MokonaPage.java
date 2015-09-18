@@ -10,21 +10,21 @@ import com.mokona.exception.MokonaException;
 
 public abstract class MokonaPage {
 
-	@Inject
-	private WebDriver driver;
+    @Inject
+    private WebDriver driver;
 
-	public MokonaPage() {
-		try {
-			getInjector().injectMembers(this);
-		} catch (Exception e) {
-			throw new MokonaException("Error on instantiate elements of page.", e);
-		}
-	}
+    public MokonaPage() {
+        try {
+            getInjector().injectMembers(this);
+        } catch (Exception e) {
+            throw new MokonaException("Error on instantiate elements of page.", e);
+        }
+    }
 
-	protected abstract String getUri();
+    protected abstract String getUri();
 
-	public void goTo() {
-		driver.get(getUri());
-	}
+    public void goTo() {
+        driver.get(getUri());
+    }
 
 }

@@ -10,32 +10,32 @@ import com.mokona.exception.MokonaException;
 
 public final class MokonaProperties {
 
-	private static final String MOKONA_PROPERTIES_FILE_NAME = "mokona.properties";
+    private static final String MOKONA_PROPERTIES_FILE_NAME = "mokona.properties";
 
-	private Map<String, String> properties;
+    private Map<String, String> properties;
 
-	public String getChromeDriverPath() {
-		readPropertiesFile();
+    public String getChromeDriverPath() {
+        readPropertiesFile();
 
-		return properties.get("mokona.webdriver.chrome");
-	}
+        return properties.get("mokona.webdriver.chrome");
+    }
 
-	private void readPropertiesFile() {
-		if (properties == null) {
-			try {
-				Properties prop = new Properties();
-				prop.load(new FileInputStream(MOKONA_PROPERTIES_FILE_NAME));
+    private void readPropertiesFile() {
+        if (properties == null) {
+            try {
+                Properties prop = new Properties();
+                prop.load(new FileInputStream(MOKONA_PROPERTIES_FILE_NAME));
 
-				properties = new HashMap<String, String>();
+                properties = new HashMap<String, String>();
 
-				for (String property : prop.stringPropertyNames()) {
-					properties.put(property, prop.getProperty(property));
-				}
+                for (String property : prop.stringPropertyNames()) {
+                    properties.put(property, prop.getProperty(property));
+                }
 
-			} catch (IOException e) {
-				throw new MokonaException("Mokona configuration file not found", e);
-			}
-		}
-	}
+            } catch (IOException e) {
+                throw new MokonaException("Mokona configuration file not found", e);
+            }
+        }
+    }
 
 }

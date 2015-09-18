@@ -39,7 +39,7 @@ public class WaitTool {
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 
         webDriver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_4_PAGE, TimeUnit.SECONDS);
- 
+
         return element;
     }
 

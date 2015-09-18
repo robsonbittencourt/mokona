@@ -12,19 +12,19 @@ import com.mokona.properties.MokonaProperties;
 @Singleton
 public class WebDriverProvider implements Provider<WebDriver> {
 
-	private static final String CHROME_DRIVER_SYSTEM_PROPERTY = "webdriver.chrome.driver";
+    private static final String CHROME_DRIVER_SYSTEM_PROPERTY = "webdriver.chrome.driver";
 
-	@Inject
-	private MokonaProperties mokonaProperties;
+    @Inject
+    private MokonaProperties mokonaProperties;
 
-	private WebDriver driver;
+    private WebDriver driver;
 
-	public WebDriver get() {
-		if (driver == null && mokonaProperties.getChromeDriverPath() != null) {
-			System.setProperty(CHROME_DRIVER_SYSTEM_PROPERTY, mokonaProperties.getChromeDriverPath());
-			driver = new ChromeDriver();
-		}
-		return driver;
-	}
+    public WebDriver get() {
+        if (driver == null && mokonaProperties.getChromeDriverPath() != null) {
+            System.setProperty(CHROME_DRIVER_SYSTEM_PROPERTY, mokonaProperties.getChromeDriverPath());
+            driver = new ChromeDriver();
+        }
+        return driver;
+    }
 
 }

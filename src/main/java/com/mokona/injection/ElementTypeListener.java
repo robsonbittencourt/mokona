@@ -14,24 +14,24 @@ import com.mokona.core.MokonaElement;
 
 public class ElementTypeListener implements TypeListener {
 
-	@Inject
-	private Injector injector;
+    @Inject
+    private Injector injector;
 
-	public <T> void hear(TypeLiteral<T> type, TypeEncounter<T> encounter) {
-		Class<?> baseClass = type.getRawType();
+    public <T> void hear(TypeLiteral<T> type, TypeEncounter<T> encounter) {
+        Class<?> baseClass = type.getRawType();
 
-		while (baseClass != null) {
-			for (Field field : baseClass.getDeclaredFields()) {
-				if (MokonaElement.class.isAssignableFrom(field.getType()) && field.isAnnotationPresent(Element.class)) {
-					encounter.register(createElementInjector(field));
-				}
-			}
-			baseClass = baseClass.getSuperclass();
-		}
-	}
+        while (baseClass != null) {
+            for (Field field : baseClass.getDeclaredFields()) {
+                if (MokonaElement.class.isAssignableFrom(field.getType()) && field.isAnnotationPresent(Element.class)) {
+                    encounter.register(createElementInjector(field));
+                }
+            }
+            baseClass = baseClass.getSuperclass();
+        }
+    }
 
-	private <T> MembersInjector<T> createElementInjector(Field field) {
-		return new ElementMembersInjector<T>(injector, field);
-	}
+    private <T> MembersInjector<T> createElementInjector(Field field) {
+        return new ElementMembersInjector<T>(injector, field);
+    }
 
 }
