@@ -4,14 +4,13 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 public class InjectorCreator {
-    
-    public static Injector mockInjector = null; //used to simplify testing
 
-    public static Injector createInjector() {
-        if (mockInjector != null)
-            return mockInjector;
+	private static Injector INJECTOR = null;
 
-        return Guice.createInjector(new InjectionModule());
-    }
+	public static Injector getInjector() {
+		if (INJECTOR == null)
+			INJECTOR = Guice.createInjector(new InjectionModule());
+		return INJECTOR;
+	}
 
 }
