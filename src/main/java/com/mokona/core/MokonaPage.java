@@ -2,9 +2,16 @@ package com.mokona.core;
 
 import static com.mokona.injection.InjectorCreator.getInjector;
 
+import javax.inject.Inject;
+
+import org.openqa.selenium.WebDriver;
+
 import com.mokona.exception.MokonaException;
 
 public abstract class MokonaPage {
+
+	@Inject
+	private WebDriver driver;
 
 	public MokonaPage() {
 		try {
@@ -14,6 +21,10 @@ public abstract class MokonaPage {
 		}
 	}
 
-	public abstract void goTo();
+	protected abstract String getUri();
+
+	public void goTo() {
+		driver.get(getUri());
+	}
 
 }

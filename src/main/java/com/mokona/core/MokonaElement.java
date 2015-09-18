@@ -20,7 +20,7 @@ public abstract class MokonaElement {
 
 	private WebElement webElement;
 
-	private String selector;
+	private By selector;
 
 	protected WebDriver getWebDriver() {
 		return webDriver;
@@ -36,12 +36,16 @@ public abstract class MokonaElement {
 
 	private WebElement findElement() {
 		try {
-			WebElement element = webDriver.findElement(By.cssSelector(selector));
-			waitTool.waitForElement(By.cssSelector(selector), 30);
+			WebElement element = webDriver.findElement(selector);
+			waitTool.waitForElement(selector, 30);
 			return element;
 		} catch (NoSuchElementException e) {
 			throw new MokonaException("Element not found on the page.", e);
 		}
+	}
+
+	public void setSelector(By selector) {
+		this.selector = selector;
 	}
 
 }

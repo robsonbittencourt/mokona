@@ -1,6 +1,10 @@
 package com.mokona.injection;
 
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+
 import java.lang.reflect.Field;
+
+import org.openqa.selenium.By;
 
 import com.google.inject.Injector;
 import com.google.inject.MembersInjector;
@@ -22,18 +26,23 @@ public class ElementMembersInjector<T> implements MembersInjector<T> {
 	public void injectMembers(T page) {
 		try {
 			Element element = elementField.getAnnotation(Element.class);
-			setSelector(page, element.selector());
+			setSelector(page, element);
 		} catch (Exception e) {
 			throw new MokonaException(e.getMessage(), e);
 		}
 	}
 
-	private void setSelector(Object page, String selector) throws Exception {
+	private void setSelector(Object page, Element annotation) throws Exception {
 		MokonaElement element = (MokonaElement) injector.getInstance(elementField.getType());
-		Field selectorField = elementField.getType().getSuperclass().getDeclaredField("selector");
-		selectorField.setAccessible(true);
-		selectorField.set(element, selector);
+		element.setSelector(buildSelector(annotation));
 		elementField.set(page, element);
+	}
+
+	private By buildSelector(Element annotation) {
+		if (isNotEmpty(annotation.css()))
+			return By.cssSelector(annotation.css());
+
+		return null;
 	}
 
 }

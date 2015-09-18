@@ -10,8 +10,6 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 public @interface Element {
 
-	String selector();
-
-	String name() default "";
+	String css();
 
 }
