@@ -3,19 +3,18 @@ package com.mokona.injection;
 import org.openqa.selenium.WebDriver;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import com.mokona.driver.DriverFactory;
+import com.google.inject.matcher.Matchers;
+import com.mokona.driver.WebDriverProvider;
 
 public class InjectionModule extends AbstractModule {
-    
-    @Override
-    protected void configure() {
-       
-    }
-    
-    @Provides
-    private WebDriver provideWebDriver(DriverFactory driverFactory) {
-       return driverFactory.get();
-    }
+
+	@Override
+	protected void configure() {
+		bind(WebDriver.class).toProvider(WebDriverProvider.class);
+
+		ElementTypeListener listener = new ElementTypeListener();
+		requestInjection(listener);
+		bindListener(Matchers.any(), listener);
+	}
 
 }
