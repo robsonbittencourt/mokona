@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.matcher.Matchers;
-import com.mokona.driver.WebDriverProvider;
+import com.mokona.webdriver.WebDriverProvider;
 
 public class InjectionModule extends AbstractModule {
 

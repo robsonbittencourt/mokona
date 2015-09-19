@@ -1,4 +1,4 @@
-package com.mokona.driver;
+package com.mokona.webdriver;
 
 import javax.inject.Singleton;
 
