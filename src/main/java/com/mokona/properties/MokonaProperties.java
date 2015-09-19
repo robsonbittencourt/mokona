@@ -10,32 +10,40 @@ import com.mokona.exception.MokonaException;
 
 public final class MokonaProperties {
 
-    private static final String MOKONA_PROPERTIES_FILE_NAME = "mokona.properties";
+    private static final String PROPERTIES_FILE_NAME = "mokona-internal.properties";
+    private static final String USER_PROPERTIES_FILE_NAME = "mokona.properties";
 
-    private Map<String, String> properties;
-
-    public String getChromeDriverPath() {
-        readPropertiesFile();
-
-        return properties.get("mokona.webdriver.chrome");
+    public Map<String, String> loadInternalPropertiesFile() {
+        try {
+            ClassLoader classLoader = getClass().getClassLoader();
+            FileInputStream inputStream = new FileInputStream(classLoader.getResource(PROPERTIES_FILE_NAME).getFile());
+            return loadProperties(inputStream);
+        } catch (IOException e) {
+            throw new MokonaException("Unexpected error", e);
+        }
     }
 
-    private void readPropertiesFile() {
-        if (properties == null) {
-            try {
-                Properties prop = new Properties();
-                prop.load(new FileInputStream(MOKONA_PROPERTIES_FILE_NAME));
-
-                properties = new HashMap<String, String>();
-
-                for (String property : prop.stringPropertyNames()) {
-                    properties.put(property, prop.getProperty(property));
-                }
-
-            } catch (IOException e) {
-                throw new MokonaException("Mokona configuration file not found", e);
-            }
+    public Map<String, String> loadUserPropertiesFile() {
+        try {
+            FileInputStream inputStream = new FileInputStream(USER_PROPERTIES_FILE_NAME);
+            return loadProperties(inputStream);
+        } catch (IOException e) {
+            throw new MokonaException("Mokona configuration file not found", e);
         }
+    }
+
+    private Map<String, String> loadProperties(FileInputStream inputStream) throws IOException {
+        Properties prop = new Properties();
+        prop.load(inputStream);
+
+        Map<String, String> properties = new HashMap<String, String>();
+
+        for (String property : prop.stringPropertyNames()) {
+            properties.put(property, prop.getProperty(property));
+        }
+
+        return properties;
+
     }
 
 }
