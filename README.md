@@ -25,15 +25,15 @@ public class GooglePage extends MokonaPage {
 ##Elements 
 Elements should be classes in your project representing the visual elements such as buttons, links, and text fields.
 Mokona already has some basic elements of html, as mentioned above. To use them you must use the annotation `@Element`
-along with a selector that identifies the element on page. Currently only the css selector is supported. Once declared on the page, no need to instantiate them, this is done automatically.
+along with a selector that identifies the element on page. Mokona supports the same selectors [available in the Selenium WebDriver](http://selenium.googlecode.com/git/docs/api/java/org/openqa/selenium/By.html), including the names are the same. Once declared on the page, no need to instantiate them, this is done automatically.
 
 ```java
 public class GooglePage extends MokonaPage {
 	
-	@Element(selector="#lst-ib")
+	@Element(cssSelector="#lst-ib")
 	TextField searchInput;
 	
-	@Element(selector="[name=\"btnK\"]")
+	@Element(cssSelector="[name=\"btnK\"]")
 	Button searchButton;
 
 	public void search(String textToSearch) {
@@ -65,7 +65,13 @@ public class MyAwesomeRadioButton extends MokonaElement {
 To use Mokona is necessary to create a configuration file in the root of your project. This file should be called `mokona.properties`. For now the only configuration required is the location of your WebDriver. Supported drivers are [ChromeDriver](https://code.google.com/p/selenium/wiki/ChromeDriver), [Firefox Driver](https://code.google.com/p/selenium/wiki/FirefoxDriver) and [Internet Explorer Driver](https://code.google.com/p/selenium/wiki/InternetExplorerDriver). A sample configuration can be seen below: 
 
 ```
-mokona.webdriver.chrome=src/main/resources/chromedriver
+mokona.path.chrome.driver=src/main/resources/chromedriver
 ```
 
-If more than one driver is specified in the configuration file, Mokona use the following check order: ChromeDriver, Driver Firefox, Internet Explorer Driver.
+If more than one driver is specified in the configuration file, Mokona use the following check order: ChromeDriver, FirefoxDriver, Internet Explorer Driver and the properties for driver configuration are:
+
+```
+mokona.path.chrome.driver
+mokona.path.firefox.driver
+mokona.path.ie.driver
+```

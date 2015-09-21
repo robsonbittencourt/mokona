@@ -11,11 +11,15 @@ import com.google.inject.spi.TypeEncounter;
 import com.google.inject.spi.TypeListener;
 import com.mokona.core.Element;
 import com.mokona.core.MokonaElement;
+import com.mokona.core.SelectorFactory;
 
 public class ElementTypeListener implements TypeListener {
 
     @Inject
     private Injector injector;
+    
+    @Inject 
+    private SelectorFactory selectorFactory;
 
     public <T> void hear(TypeLiteral<T> type, TypeEncounter<T> encounter) {
         Class<?> baseClass = type.getRawType();
@@ -31,7 +35,7 @@ public class ElementTypeListener implements TypeListener {
     }
 
     private <T> MembersInjector<T> createElementInjector(Field field) {
-        return new ElementMembersInjector<T>(injector, field);
+        return new ElementMembersInjector<T>(injector, field, selectorFactory);
     }
 
 }

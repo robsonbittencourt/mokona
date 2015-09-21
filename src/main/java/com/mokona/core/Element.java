@@ -10,6 +10,13 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 public @interface Element {
 
-    String css();
+    String className() default "";
+    String cssSelector() default "";
+    String id() default "";
+    String linkText() default "";
+    String name() default "";
+    String partialLinkText() default "";
+    String tagName() default "";
+    String xpath() default "";
 
 }

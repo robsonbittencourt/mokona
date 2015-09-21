@@ -16,7 +16,8 @@ public final class MokonaProperties {
     public Map<String, String> loadInternalPropertiesFile() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            FileInputStream inputStream = new FileInputStream(classLoader.getResource(PROPERTIES_FILE_NAME).getFile());
+            String file = classLoader.getResource(PROPERTIES_FILE_NAME).getFile();
+            FileInputStream inputStream = new FileInputStream(file);
             return loadProperties(inputStream);
         } catch (IOException e) {
             throw new MokonaException("Unexpected error", e);
@@ -43,7 +44,6 @@ public final class MokonaProperties {
         }
 
         return properties;
-
     }
 
 }

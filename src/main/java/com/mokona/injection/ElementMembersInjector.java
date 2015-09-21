@@ -1,25 +1,24 @@
 package com.mokona.injection;
 
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
-
 import java.lang.reflect.Field;
-
-import org.openqa.selenium.By;
 
 import com.google.inject.Injector;
 import com.google.inject.MembersInjector;
 import com.mokona.core.Element;
 import com.mokona.core.MokonaElement;
+import com.mokona.core.SelectorFactory;
 import com.mokona.exception.MokonaException;
 
 public class ElementMembersInjector<T> implements MembersInjector<T> {
 
     private Injector injector;
     private Field elementField;
+    private SelectorFactory selectorFactory;
 
-    public ElementMembersInjector(Injector injector, Field elementField) {
+    public ElementMembersInjector(Injector injector, Field elementField, SelectorFactory selectorFactory) {
         this.injector = injector;
         this.elementField = elementField;
+        this.selectorFactory = selectorFactory;
         this.elementField.setAccessible(true);
     }
 
@@ -34,15 +33,14 @@ public class ElementMembersInjector<T> implements MembersInjector<T> {
 
     private void setSelector(Object page, Element annotation) throws Exception {
         MokonaElement element = (MokonaElement) injector.getInstance(elementField.getType());
-        element.setSelector(buildSelector(annotation));
+        
+        try {
+            element.setSelector(selectorFactory.build(annotation));
+        } catch (MokonaException e) {
+            throw new MokonaException(String.format("The page %s contain an element %s without the selector parameter", page.getClass(), element.getClass()));
+        }
+        
         elementField.set(page, element);
-    }
-
-    private By buildSelector(Element annotation) {
-        if (isNotEmpty(annotation.css()))
-            return By.cssSelector(annotation.css());
-
-        return null;
     }
 
 }
