@@ -2,6 +2,7 @@ package com.mokona.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -10,15 +11,13 @@ import com.mokona.exception.MokonaException;
 
 public final class MokonaProperties {
 
-    private static final String PROPERTIES_FILE_NAME = "mokona-internal.properties";
+    private static final String PROPERTIES_FILE_NAME = "/mokona-internal.properties";
     private static final String USER_PROPERTIES_FILE_NAME = "mokona.properties";
 
     public Map<String, String> loadInternalPropertiesFile() {
         try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            String file = classLoader.getResource(PROPERTIES_FILE_NAME).getFile();
-            FileInputStream inputStream = new FileInputStream(file);
-            return loadProperties(inputStream);
+            InputStream is = this.getClass().getResourceAsStream(PROPERTIES_FILE_NAME);
+            return loadProperties(is);
         } catch (IOException e) {
             throw new MokonaException("Unexpected error", e);
         }
@@ -33,7 +32,7 @@ public final class MokonaProperties {
         }
     }
 
-    private Map<String, String> loadProperties(FileInputStream inputStream) throws IOException {
+    private Map<String, String> loadProperties(InputStream inputStream) throws IOException {
         Properties prop = new Properties();
         prop.load(inputStream);
 
