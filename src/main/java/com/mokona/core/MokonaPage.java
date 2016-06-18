@@ -22,9 +22,13 @@ public abstract class MokonaPage {
     }
 
     protected abstract String getUri();
+    
+    public WebDriver getDriver() {
+    	return driver;
+    }
 
     public void goTo() {
         driver.get(getUri());
     }
-
+    
 }
